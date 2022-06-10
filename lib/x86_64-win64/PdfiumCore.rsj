@@ -1,0 +1,13 @@
+{"version":1,"strings":[
+{"hash":165056452,"name":"pdfiumcore.rsunsupportedfeature","sourcebytes":[70,117,110,99,116,105,111,110,32,37,115,32,110,111,116,32,115,117,112,112,111,114,116,101,100],"value":"Function %s not supported"},
+{"hash":222562485,"name":"pdfiumcore.rsargumentsoutofrange","sourcebytes":[70,117,110,99,116,105,111,110,115,32,97,114,103,117,109,101,110,116,32,34,37,115,34,32,111,117,116,32,111,102,32,114,97,110,103,101],"value":"Functions argument \"%s\" out of range"},
+{"hash":15961870,"name":"pdfiumcore.rsdocumentnotactive","sourcebytes":[80,68,70,32,100,111,99,117,109,101,110,116,32,105,115,32,110,111,116,32,111,112,101,110],"value":"PDF document is not open"},
+{"hash":198573397,"name":"pdfiumcore.rsfiletoolarge","sourcebytes":[80,68,70,32,102,105,108,101,32,34,37,115,34,32,105,115,32,116,111,111,32,108,97,114,103,101],"value":"PDF file \"%s\" is too large"},
+{"hash":23895602,"name":"pdfiumcore.rspdferrorsuccess","sourcebytes":[78,111,32,101,114,114,111,114],"value":"No error"},
+{"hash":205443058,"name":"pdfiumcore.rspdferrorunknown","sourcebytes":[85,110,107,110,111,119,110,32,101,114,114,111,114],"value":"Unknown error"},
+{"hash":103094852,"name":"pdfiumcore.rspdferrorfile","sourcebytes":[70,105,108,101,32,110,111,116,32,102,111,117,110,100,32,111,114,32,99,97,110,39,116,32,98,101,32,111,112,101,110,101,100],"value":"File not found or can't be opened"},
+{"hash":250287908,"name":"pdfiumcore.rspdferrorformat","sourcebytes":[70,105,108,101,32,105,115,32,110,111,116,32,97,32,80,68,70,32,100,111,99,117,109,101,110,116,32,111,114,32,105,115,32,99,111,114,114,117,112,116,101,100],"value":"File is not a PDF document or is corrupted"},
+{"hash":123184996,"name":"pdfiumcore.rspdferrorpassword","sourcebytes":[80,97,115,115,119,111,114,100,32,114,101,113,117,105,114,101,100,32,111,100,101,114,32,105,110,118,97,108,105,100,32,112,97,115,115,119,111,114,100],"value":"Password required oder invalid password"},
+{"hash":69203172,"name":"pdfiumcore.rspdferrorsecurity","sourcebytes":[83,101,99,117,114,105,116,121,32,115,99,104,101,109,97,32,105,115,32,110,111,116,32,115,117,112,112,111,114,116],"value":"Security schema is not support"},
+{"hash":33485826,"name":"pdfiumcore.rspdferrorpage","sourcebytes":[80,97,103,101,32,100,111,101,115,32,110,111,116,32,101,120,105,115,116,32,111,114,32,100,97,116,97,32,101,114,114,111,114],"value":"Page does not exist or data error"}
+]}

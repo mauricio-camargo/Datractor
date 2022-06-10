@@ -1,0 +1,670 @@
+object Form1: TForm1
+  Left = 241
+  Height = 869
+  Top = 64
+  Width = 1485
+  ActiveControl = SG
+  Caption = 'Datractor 1.0'
+  ClientHeight = 869
+  ClientWidth = 1485
+  DesignTimePPI = 144
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '2.2.2.0'
+  WindowState = wsMaximized
+  object Panel4: TPanel
+    Left = 0
+    Height = 869
+    Top = 0
+    Width = 392
+    Align = alLeft
+    ClientHeight = 869
+    ClientWidth = 392
+    TabOrder = 0
+    object SpeedButton1: TSpeedButton
+      Left = 24
+      Height = 87
+      Top = 8
+      Width = 161
+      Caption = 'Open image'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -22
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Layout = blGlyphTop
+      OnClick = SpeedButton1Click
+      ParentFont = False
+    end
+    object SpeedButton4: TSpeedButton
+      Left = 205
+      Height = 87
+      Top = 8
+      Width = 170
+      Caption = 'Open PDF'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -22
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      OnClick = SpeedButton4Click
+      ParentFont = False
+    end
+    object Panel1: TPanel
+      Left = 43
+      Height = 290
+      Top = 108
+      Width = 324
+      ClientHeight = 290
+      ClientWidth = 324
+      Color = 16769792
+      ParentColor = False
+      TabOrder = 0
+      object BtnStart: TSpeedButton
+        Left = 17
+        Height = 59
+        Top = 4
+        Width = 287
+        Caption = 'Start calibrating'
+        Enabled = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -22
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = BtnStartClick
+        ParentFont = False
+      end
+      object MkX1lab: TLabel
+        Left = 70
+        Height = 28
+        Top = 133
+        Width = 73
+        Caption = 'Nothing'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object MkX2lab: TLabel
+        Left = 70
+        Height = 28
+        Top = 172
+        Width = 73
+        Caption = 'Nothing'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object MkY1lab: TLabel
+        Left = 70
+        Height = 28
+        Top = 211
+        Width = 73
+        Caption = 'Nothing'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object MkY2lab: TLabel
+        Left = 70
+        Height = 28
+        Top = 250
+        Width = 73
+        Caption = 'Nothing'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object label3: TLabel
+        Left = 18
+        Height = 28
+        Top = 133
+        Width = 47
+        Caption = 'X1 = '
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object label4: TLabel
+        Left = 18
+        Height = 28
+        Top = 172
+        Width = 47
+        Caption = 'X2 = '
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object label5: TLabel
+        Left = 18
+        Height = 28
+        Top = 211
+        Width = 46
+        Caption = 'Y1 = '
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object label6: TLabel
+        Left = 18
+        Height = 28
+        Top = 250
+        Width = 46
+        Caption = 'Y2 = '
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object label7: TLabel
+        Left = 160
+        Height = 28
+        Top = 99
+        Width = 137
+        Caption = 'Values in graph'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+      object EdX2: TFloatSpinEditEx
+        Left = 155
+        Height = 36
+        Top = 169
+        Width = 119
+        Alignment = taCenter
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 1
+        OnClick = EdX2Click
+        UpDownVisible = False
+      end
+      object EdY1: TFloatSpinEditEx
+        Left = 155
+        Height = 36
+        Top = 208
+        Width = 119
+        Alignment = taCenter
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 2
+        OnClick = EdY1Click
+        UpDownVisible = False
+      end
+      object EdY2: TFloatSpinEditEx
+        Left = 155
+        Height = 36
+        Top = 247
+        Width = 119
+        Alignment = taCenter
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 3
+        OnClick = EdY2Click
+        UpDownVisible = False
+      end
+      object EdX1: TFloatSpinEditEx
+        Left = 154
+        Height = 36
+        Top = 130
+        Width = 119
+        Alignment = taCenter
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 0
+        OnClick = EdX1Click
+        UpDownVisible = False
+      end
+      object label10: TLabel
+        Left = 8
+        Height = 28
+        Top = 99
+        Width = 127
+        Caption = 'Pixel reference'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+      object SpeedButton6: TSpeedButton
+        Left = 24
+        Height = 34
+        Top = 64
+        Width = 274
+        Caption = 'Reset points'
+        OnClick = SpeedButton6Click
+      end
+    end
+    object Panel3: TPanel
+      Left = 43
+      Height = 590
+      Top = 408
+      Width = 324
+      ClientHeight = 590
+      ClientWidth = 324
+      Color = 16769792
+      ParentColor = False
+      TabOrder = 1
+      object MemoTemp: TMemo
+        Left = 40
+        Height = 134
+        Top = 264
+        Width = 226
+        TabOrder = 1
+        WordWrap = False
+      end
+      object ExtractBtn: TSpeedButton
+        Left = 24
+        Height = 59
+        Top = 6
+        Width = 274
+        Caption = 'Extract points'
+        Enabled = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -22
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = ExtractBtnClick
+        ParentFont = False
+      end
+      object SG: TStringGrid
+        Left = 8
+        Height = 336
+        Top = 72
+        Width = 309
+        ColCount = 4
+        Columns = <        
+          item
+            MinSize = 11
+            MaxSize = 214
+            Title.Caption = 'Y value'
+            Width = 84
+          end        
+          item
+            MinSize = 11
+            MaxSize = 214
+            Title.Caption = 'X value'
+            Width = 89
+          end        
+          item
+            Title.Caption = 'Obs'
+            Width = 95
+          end>
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goRowSelect, goSmoothScroll]
+        ParentFont = False
+        RowCount = 1
+        TabOrder = 0
+        TabStop = False
+        ColWidths = (
+          37
+          84
+          89
+          95
+        )
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 56
+        Height = 38
+        Top = 408
+        Width = 199
+        Caption = 'Delete coord'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = SpeedButton2Click
+        ParentFont = False
+      end
+      object SaveBtn: TSpeedButton
+        Left = 25
+        Height = 64
+        Top = 472
+        Width = 272
+        Caption = 'Save in CSV format'
+        Enabled = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -22
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        GroupIndex = 1
+        OnClick = SaveBtnClick
+        ParentFont = False
+      end
+      object SpeedButton5: TSpeedButton
+        Left = 42
+        Height = 42
+        Top = 544
+        Width = 232
+        Caption = 'Copy values to clipboard'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = SpeedButton5Click
+        ParentFont = False
+      end
+    end
+    object SpeedButton3: TSpeedButton
+      Left = 276
+      Height = 35
+      Top = 1008
+      Width = 91
+      Caption = 'Citation'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -20
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      OnClick = SpeedButton3Click
+      ParentFont = False
+    end
+  end
+  object Panel5: TPanel
+    Left = 392
+    Height = 869
+    Top = 0
+    Width = 1093
+    Align = alClient
+    ClientHeight = 869
+    ClientWidth = 1093
+    TabOrder = 1
+    object Panel2: TPanel
+      Left = 1
+      Height = 83
+      Top = 1
+      Width = 1091
+      Align = alTop
+      ClientHeight = 83
+      ClientWidth = 1091
+      TabOrder = 0
+      object Label8: TLabel
+        Left = 784
+        Height = 28
+        Top = 24
+        Width = 46
+        Caption = 'Page:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object sePageNo: TSpinEdit
+        Left = 840
+        Height = 33
+        Top = 28
+        Width = 80
+        MaxValue = 999
+        MinValue = 1
+        OnChange = sePageNoChange
+        TabStop = False
+        TabOrder = 0
+        Value = 1
+      end
+      object bGetText: TButton
+        Left = 1056
+        Height = 46
+        Top = 16
+        Width = 140
+        Caption = 'Get text'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -22
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = bGetTextClick
+        ParentFont = False
+        TabOrder = 1
+        TabStop = False
+      end
+      object CheckB1: TCheckBox
+        Left = 294
+        Height = 34
+        Top = 28
+        Width = 297
+        Caption = 'Strech image '#13#10'(use mouse)'
+        Enabled = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -22
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnChange = CheckB1Change
+        ParentFont = False
+        TabOrder = 2
+        TabStop = False
+        Visible = False
+      end
+      object CoordXlab: TLabel
+        Left = 80
+        Height = 28
+        Top = 42
+        Width = 11
+        Caption = '0'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object CoordYlab: TLabel
+        Left = 80
+        Height = 28
+        Top = 8
+        Width = 11
+        Caption = '0'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 8
+        Height = 28
+        Top = 8
+        Width = 61
+        Caption = 'Axix Y: '
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 8
+        Height = 28
+        Top = 42
+        Width = 61
+        Caption = 'Axis X: '
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label9: TLabel
+        Left = 233
+        Height = 28
+        Top = -1
+        Width = 52
+        Caption = 'Zoom'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -20
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object bScaleM: TSpeedButton
+        Left = 200
+        Height = 49
+        Top = 29
+        Width = 62
+        Caption = '-'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -32
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        OnClick = bScaleMClick
+        ParentFont = False
+      end
+      object bScaleP: TSpeedButton
+        Left = 328
+        Height = 49
+        Top = 29
+        Width = 62
+        Caption = '+'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -32
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        OnClick = bScalePClick
+        ParentFont = False
+      end
+      object bScaleAuto: TSpeedButton
+        Left = 264
+        Height = 49
+        Top = 29
+        Width = 62
+        Caption = 'Auto'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -22
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = bScaleAutoClick
+        ParentFont = False
+      end
+      object bPrev: TSpeedButton
+        Left = 464
+        Height = 74
+        Top = 5
+        Width = 104
+        Caption = '<'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -40
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = bPrevClick
+        ParentFont = False
+      end
+      object bNext: TSpeedButton
+        Left = 576
+        Height = 74
+        Top = 5
+        Width = 104
+        Caption = '>'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -40
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = bNextClick
+        ParentFont = False
+      end
+    end
+    object JvMovablePanel1: TJvMovablePanel
+      Left = 0
+      Height = 599
+      Top = 102
+      Width = 874
+      BorderWidth = 1
+      BorderStyle = bsSingle
+      ClientHeight = 595
+      ClientWidth = 870
+      Color = clSilver
+      ParentColor = False
+      TabOrder = 1
+      BorderSize = 8
+      object img: TImage
+        Left = 2
+        Height = 591
+        Top = 2
+        Width = 866
+        Align = alClient
+        AutoSize = True
+        OnMouseDown = imgMouseDown
+        OnMouseMove = imgMouseMove
+      end
+    end
+    object ScrollBox1: TScrollBox
+      Left = 224
+      Height = 827
+      Top = 152
+      Width = 1056
+      HorzScrollBar.Page = 1
+      VertScrollBar.Increment = 1
+      VertScrollBar.Page = 1
+      VertScrollBar.Smooth = True
+      BorderStyle = bsNone
+      Color = clGray
+      ParentColor = False
+      TabOrder = 2
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 990
+    Top = 503
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.csv'
+    Filter = 'File CSV|*.csv'
+    Left = 854
+    Top = 670
+  end
+  object odPDF: TOpenDialog
+    DefaultExt = '.pdf'
+    Filter = 'PDF Document|*.pdf'
+    Left = 880
+    Top = 504
+  end
+end

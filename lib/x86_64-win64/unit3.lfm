@@ -1,0 +1,74 @@
+object Form3: TForm3
+  Left = 773
+  Height = 366
+  Top = 354
+  Width = 527
+  ActiveControl = EdVal
+  Caption = 'Value in graph'
+  ClientHeight = 366
+  ClientWidth = 527
+  DesignTimePPI = 144
+  OnActivate = FormActivate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.2.2.0'
+  object BitBtn1: TBitBtn
+    Left = 103
+    Height = 61
+    Top = 263
+    Width = 137
+    Cancel = True
+    DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -22
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Kind = bkCancel
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 0
+  end
+  object BitBtn2: TBitBtn
+    Left = 276
+    Height = 61
+    Top = 263
+    Width = 132
+    Default = True
+    DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -22
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Kind = bkOK
+    ModalResult = 1
+    ParentFont = False
+    TabOrder = 1
+  end
+  object EdVal: TFloatSpinEditEx
+    Left = 152
+    Height = 53
+    Top = 96
+    Width = 160
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -32
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    MaxLength = 0
+    ParentFont = False
+    TabOrder = 2
+    OnEnter = EdValEnter
+  end
+  object Label1: TLabel
+    Left = 168
+    Height = 30
+    Top = 48
+    Width = 138
+    Caption = 'Value in graph'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -22
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+end

@@ -1,0 +1,342 @@
+object Form1: TForm1
+  Left = 407
+  Height = 891
+  Top = 152
+  Width = 1245
+  ActiveControl = SG
+  Caption = 'Datractor 1.0'
+  ClientHeight = 891
+  ClientWidth = 1245
+  DesignTimePPI = 135
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '2.2.2.0'
+  object Label1: TLabel
+    Left = 648
+    Height = 24
+    Top = 48
+    Width = 67
+    Caption = 'Axis X: '
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 648
+    Height = 24
+    Top = 16
+    Width = 68
+    Caption = 'Axix Y: '
+    ParentColor = False
+  end
+  object CoordXlab: TLabel
+    Left = 744
+    Height = 24
+    Top = 48
+    Width = 12
+    Caption = '0'
+    ParentColor = False
+  end
+  object CoordYlab: TLabel
+    Left = 744
+    Height = 24
+    Top = 16
+    Width = 12
+    Caption = '0'
+    ParentColor = False
+  end
+  object Panel1: TPanel
+    Left = 40
+    Height = 240
+    Top = 112
+    Width = 304
+    ClientHeight = 240
+    ClientWidth = 304
+    Color = 16769792
+    ParentColor = False
+    TabOrder = 0
+    object BtnStart: TSpeedButton
+      Left = 16
+      Height = 48
+      Top = 12
+      Width = 232
+      Caption = 'Start calibrating'
+      Enabled = False
+      OnClick = BtnStartClick
+    end
+    object MkX1lab: TLabel
+      Left = 72
+      Height = 24
+      Top = 92
+      Width = 76
+      Caption = 'Nothing'
+      ParentColor = False
+    end
+    object MkX2lab: TLabel
+      Left = 72
+      Height = 24
+      Top = 128
+      Width = 76
+      Caption = 'Nothing'
+      ParentColor = False
+    end
+    object MkY1lab: TLabel
+      Left = 72
+      Height = 24
+      Top = 164
+      Width = 76
+      Caption = 'Nothing'
+      ParentColor = False
+    end
+    object MkY2lab: TLabel
+      Left = 72
+      Height = 24
+      Top = 198
+      Width = 76
+      Caption = 'Nothing'
+      ParentColor = False
+    end
+    object label3: TLabel
+      Left = 24
+      Height = 24
+      Top = 92
+      Width = 47
+      Caption = 'X1 = '
+      ParentColor = False
+    end
+    object label4: TLabel
+      Left = 24
+      Height = 24
+      Top = 128
+      Width = 47
+      Caption = 'X2 = '
+      ParentColor = False
+    end
+    object label5: TLabel
+      Left = 24
+      Height = 24
+      Top = 164
+      Width = 46
+      Caption = 'Y1 = '
+      ParentColor = False
+    end
+    object label6: TLabel
+      Left = 24
+      Height = 24
+      Top = 198
+      Width = 46
+      Caption = 'Y2 = '
+      ParentColor = False
+    end
+    object EdX1: TEdit
+      Left = 167
+      Height = 30
+      Top = 92
+      Width = 103
+      AutoSize = False
+      TabOrder = 0
+      TextHint = '0.0'
+    end
+    object EdX2: TEdit
+      Left = 167
+      Height = 30
+      Top = 128
+      Width = 103
+      AutoSize = False
+      TabOrder = 1
+      TextHint = '0.0'
+    end
+    object EdY1: TEdit
+      Left = 168
+      Height = 30
+      Top = 164
+      Width = 103
+      AutoSize = False
+      TabOrder = 2
+      TextHint = '0.0'
+    end
+    object EdY2: TEdit
+      Left = 168
+      Height = 30
+      Top = 199
+      Width = 103
+      AutoSize = False
+      TabOrder = 3
+      TextHint = '0.0'
+    end
+    object label7: TLabel
+      Left = 151
+      Height = 24
+      Top = 65
+      Width = 145
+      Caption = 'Values in graph'
+      ParentColor = False
+    end
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 64
+    Height = 98
+    Top = 6
+    Width = 256
+    Caption = 'Open image'
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000064000000640000000000000000000000000000008445
+      2195D1733BEACB6C337C2D170A18000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008747
+      23AAE08348FFDE8349FCBC6934B88A49214A0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008646
+      22AADE783BFFDD7636FFE68E4FFFE18C4DFFD8793B9E76401D33000000000000
+      0000000000000000000000000000000000000000000000000000000000008646
+      22AADD7639FFDB7332FFE17E3AFFE78D49FFEA9A59FEE28D4DDA8F4C225F2F19
+      0B0A000000000000000000000000000000000000000000000000000000008645
+      21AADC7236FFDA7130FFDF7A36FFE3813CFFE88C45FFEE9D57FFECA05EFFDF86
+      47CEA6592847170C050A00000000000000000000000000000000000000008543
+      20AADB6F32FFD96E2EFFDD7634FFE17D39FFE58640FFE88C44FFED9951FFEFA2
+      5DFFE39152EAA55C2C985C301615000000000000000000000000000000008442
+      1FAAD96A2EFFD76A2BFFDB7231FFDE7835FFE17F3AFFE4843EFFE78942FFE88C
+      44FFEB954FFFEA9B5AFFD98145E7CD6E34782C160A1100000000000000008443
+      21AADA6D34FFD56729FFD96D2DFFDB7332FFDF7936FFE17E39FFE3823CFFE484
+      3EFFE4843EFFE58642FFE58F4EFFE08C50FCB25D2C8A2B160A07000000008243
+      22AADB7540FFD76F35FFD76B2DFFD86D2EFFDB7130FFDC7533FFDE7836FFDF7A
+      37FFDF7A37FFE07C3AFFE28647FFDE894EFCB15D2D8E2B160A07000000008243
+      22AADA7642FFD67039FFD87238FFD87236FFD97032FFDA6F30FFDB7130FFDB72
+      32FFDE7A3AFFE08448FFD27941EEC76933872B160A1500000000000000008042
+      23AADA7644FFD56D37FFD67038FFD87139FFD9743AFFDA763CFFDC793EFFDE7D
+      43FFD67A42EE9B5228AA562C141C000000000000000000000000000000007F42
+      23AAD97745FFD36B36FFD56C37FFD66E38FFD77039FFDB763FFFDB7A44FFCB6E
+      39DC964D2451150A050E00000000000000000000000000000000000000007E41
+      24AAD87748FFD26835FFD46B37FFD7703DFFD7723FFECC6A37E17E3F1E712914
+      090E000000000000000000000000000000000000000000000000000000007C41
+      24AAD87749FFD26938FFD97747FFD17243FFBD6030AF6733183E000000000000
+      0000000000000000000000000000000000000000000000000000000000007B40
+      24AADA8156FFD2784DFFBD6235C18B4421570000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000763A
+      1F95C0693FF1B3592E8E3A1C0D1E130904010000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000
+    }
+    Spacing = 44
+    OnClick = SpeedButton1Click
+  end
+  object CheckB1: TCheckBox
+    Left = 400
+    Height = 52
+    Top = 12
+    Width = 150
+    Caption = 'Strech image'#10'(use mouse)'
+    Enabled = False
+    OnChange = CheckB1Change
+    TabOrder = 1
+  end
+  object SaveBtn: TSpeedButton
+    Left = 112
+    Height = 55
+    Top = 808
+    Width = 232
+    Caption = 'Save in CSV format'
+    Enabled = False
+    GroupIndex = 1
+    OnClick = SaveBtnClick
+  end
+  object Panel3: TPanel
+    Left = 40
+    Height = 439
+    Top = 362
+    Width = 304
+    ClientHeight = 439
+    ClientWidth = 304
+    Color = 16769792
+    ParentColor = False
+    TabOrder = 2
+    object ExtractBtn: TSpeedButton
+      Left = 32
+      Height = 55
+      Top = 12
+      Width = 232
+      Caption = 'Extract points'
+      Enabled = False
+      OnClick = ExtractBtnClick
+    end
+    object SG: TStringGrid
+      Left = 16
+      Height = 318
+      Top = 80
+      Width = 256
+      ColCount = 3
+      Columns = <      
+        item
+          Title.Caption = 'Y value'
+          Width = 79
+        end      
+        item
+          Title.Caption = 'X value'
+          Width = 83
+        end>
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goSmoothScroll]
+      RowCount = 1
+      TabOrder = 0
+      ColWidths = (
+        35
+        79
+        83
+      )
+    end
+    object SpeedButton2: TSpeedButton
+      Left = 144
+      Height = 31
+      Top = 402
+      Width = 152
+      Caption = 'Delete coord'
+      OnClick = SpeedButton2Click
+    end
+  end
+  object JvMovablePanel1: TJvMovablePanel
+    Left = 368
+    Height = 562
+    Top = 82
+    Width = 818
+    BorderWidth = 1
+    BorderStyle = bsSingle
+    ClientHeight = 560
+    ClientWidth = 816
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 3
+    BorderSize = 8
+    object img: TImage
+      Left = 2
+      Height = 556
+      Top = 2
+      Width = 812
+      Align = alClient
+      AutoSize = True
+      OnMouseDown = imgMouseDown
+      OnMouseMove = imgMouseMove
+    end
+  end
+  object Memo1: TMemo
+    Left = 1000
+    Height = 127
+    Top = 12
+    Width = 211
+    TabOrder = 4
+    Visible = False
+    WordWrap = False
+  end
+  object SpeedButton3: TSpeedButton
+    Left = 8
+    Height = 33
+    Top = 824
+    Width = 78
+    Caption = 'About'
+    OnClick = SpeedButton3Click
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 928
+    Top = 472
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.csv'
+    Filter = 'File CSV|*.csv'
+    Left = 801
+    Top = 628
+  end
+end
