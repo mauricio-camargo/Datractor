@@ -1,6 +1,7 @@
 # Datractor
  
-Download Datractor from here
+Download Datractor from here:
+
 https://github.com/mauricio-camargo/Datractor/raw/main/deploy/detractor.zip
 
 Small freeware program written in Lazarus for extracting data values directly from PDFs and images.
