@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Spin, PdfiumCore, PdfiumCtrl, LCLIntf, Math,Unit2,Unit3,
-  Buttons, ValEdit, Grids, ComCtrls, JvMovableBevel, RTTICtrls, SpinEx
-  ;
+  Spin, PdfiumCore, PdfiumCtrl, LCLIntf, Math, Unit2, Buttons, ValEdit, Grids,
+  ColorSpeedButton, BCButton, fpspreadsheetgrid, JvMovableBevel, SpinEx,
+  fpsallformats, StrUtils;
 
 type
 
@@ -25,6 +25,7 @@ type
     EdY1: TFloatSpinEditEx;
     EdY2: TFloatSpinEditEx;
     ExtractBtn: TSpeedButton;
+    grid: TsWorksheetGrid;
     img: TImage;
     JvMovablePanel1: TJvMovablePanel;
     Label1: TLabel;
@@ -200,10 +201,13 @@ end;
 
 procedure TForm1.BtnStartClick(Sender: TObject);
 begin
-Screen.Cursor:=crCross;
-MkX1lab.Caption:='Waiting...';
-ExtractBtn.Enabled:=True;
-SaveBtn.Enabled:=True;
+if BtnStart.Caption='Start calibrating' then begin
+ Screen.Cursor:=crCross;
+ MkX1lab.Caption:='Waiting...';
+ ExtractBtn.Enabled:=True;
+ BtnStart.Caption:='STOP calibrating';
+end else
+ BtnStart.Caption:='Start calibrating';
 end;
 
 procedure TForm1.EdX1Click(Sender: TObject);
@@ -227,19 +231,36 @@ EdY2.SelectAll;
 end;
 
 procedure TForm1.SaveBtnClick(Sender: TObject);
-var i: integer;
+var i,j: integer;
 begin
 if not SaveDialog1.Execute then Exit;
-MemoTemp.Lines.Clear;
-for i:=0 to SG.RowCount-1 do
- MemoTemp.Lines.Add(SG.Cells[0,i]+';'+SG.Cells[1,i]+';'+SG.Cells[2,i]+';'+SG.Cells[3,i]);
-MemoTemp.Lines.SaveToFile(SaveDialog1.FileName);
+if SaveDialog1.FilterIndex=2 then begin;
+ MemoTemp.Lines.Clear;
+ for i:=0 to SG.RowCount-1 do
+  MemoTemp.Lines.Add(SG.Cells[0,i]+';'+SG.Cells[1,i]+';'+SG.Cells[2,i]+';'+SG.Cells[3,i]);
+ MemoTemp.Lines.SaveToFile(SaveDialog1.FileName);
+end else
+if SaveDialog1.FilterIndex=1 then begin
+ grid.Cells[1,1]:='Y';
+ grid.Cells[2,1]:='X';
+ grid.Cells[3,1]:='Obs';
+ for i:=1 to SG.RowCount-1 do
+  for j:=1 to 3 do begin
+   if (j=1) or (j=2) then              //Y e X
+   grid.Cells[j,i+1]:=StrToFloat(SG.Cells[j,i]) else
+   grid.Cells[j,i+1]:=SG.Cells[j,i] //Obs
+  end;
+ Screen.Cursor := crHourglass;
+ Grid.SaveToSpreadsheetFile(SaveDialog1.FileName);
+ Screen.Cursor := crDefault;
+end;
 end;
 
 procedure TForm1.ExtractBtnClick(Sender: TObject);
 begin
 PDFCtrl.AllowUserTextSelection:=True;
 CalibrateOk:=False;
+SaveBtn.Enabled:=True;
 if ExtractBtn.Caption='Extract points' then begin
  try
   ax1:=StrToInt(MkX1lab.Caption);
@@ -285,12 +306,14 @@ SG.Cells[0,0]:='N';
 SG.Cells[1,0]:='Y_vert';
 SG.Cells[2,0]:='X_horiz';
 SG.Cells[3,0]:='Obs';
+//SpeedButton1.Caption := 'Open image' +#13#10 + 'jpg,png,tif etc';
 end;
 
 procedure TForm1.imgMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var Dax,Day,R: integer;
 Dbx,Dby,Rx,Ry: Double;
+S: String;
 begin
 if MkX1lab.Caption='Waiting...' then begin
  MkX1lab.Caption:=IntToStr(X);
@@ -329,8 +352,14 @@ if ExtractBtn.Caption='STOP EXTRACTING' then begin
  Rx:=(bx1)+(((X-ax1)/(ax2-ax1))*(bx2-bx1));
  SG.RowCount:=SG.RowCount+1;
  SG.Cells[0,SG.RowCount-1]:=IntToStr(SG.RowCount-1);
- SG.Cells[1,SG.RowCount-1]:=FloatToStrF(Ry,ffFixed,8,2);
- SG.Cells[2,SG.RowCount-1]:=FloatToStrF(Rx,ffFixed,8,2);
+// SG.Cells[1,SG.RowCount-1]:=FloatToStrF(Ry,ffFixed,8,2);
+ S:=FloatToStrF(Ry,ffFixed,8,2);
+ ReplaceText(S,',','.');
+ SG.Cells[1,SG.RowCount-1]:=S;
+ // SG.Cells[2,SG.RowCount-1]:=FloatToStrF(Rx,ffFixed,8,2);
+ S:=FloatToStrF(Rx,ffFixed,8,2);
+ ReplaceText(S,',','.');
+ SG.Cells[2,SG.RowCount-1]:=S;
  SG.Row:=SG.RowCount-1;
  PDFCtrl.AllowUserTextSelection:=False;
 end;
