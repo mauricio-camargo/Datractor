@@ -306,7 +306,7 @@ SG.Cells[0,0]:='N';
 SG.Cells[1,0]:='Y_vert';
 SG.Cells[2,0]:='X_horiz';
 SG.Cells[3,0]:='Obs';
-SpeedButton1.Caption := 'Open image' +#13#10 + 'jpg,png,tif etc';
+//SpeedButton1.Caption := 'Open image' +#13#10 + 'jpg,png,tif etc';
 end;
 
 procedure TForm1.imgMouseDown(Sender: TObject; Button: TMouseButton;
