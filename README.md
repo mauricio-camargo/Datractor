@@ -8,6 +8,10 @@ Small freeware program written in Lazarus for extracting graph and map data valu
 
 Pequeno programa aberto escrito em Lazarus para extrair valores de gráficos e mapas diretamente de PDFs e imagens.
 
+Video tutorial de 47 segundos: 
+
+https://youtu.be/GI8dnzxbOVk
+
 Citation:
 
 Camargo, M.G. 2022. Datractor: an open source software for extracting graph and map data values directly from PDFs and images. v. 1.0.
