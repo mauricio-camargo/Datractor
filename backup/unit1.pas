@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
   Spin, PdfiumCore, PdfiumCtrl, LCLIntf, Math, Unit2, Buttons, ValEdit, Grids,
   ColorSpeedButton, BCButton, fpspreadsheetgrid, JvMovableBevel, SpinEx,
-  fpsallformats, StrUtils;
+  fpsallformats, StrUtils, Unit3;
 
 type
 
@@ -402,6 +402,20 @@ begin
   ExtractBtn.Enabled:=True;
   Caption := OpenDialog1.FileName;
 
+  EdX1.Value:=0;
+  EdX2.Value:=0;
+  EdY1.Value:=0;
+  EdY2.Value:=0;
+  SG.Clear;
+  SG.RowCount:=1;
+  SG.Cells[0,0]:='N';
+  SG.Cells[1,0]:='Y_vert';
+  SG.Cells[2,0]:='X_horiz';
+  SG.Cells[3,0]:='Obs';
+  sePageNo.Value:=1;
+  CheckB1.Checked:=False;
+  Label9.Caption:='Zoom';
+
   CheckB1.Visible:=True;
   bScaleM.Visible:=False;
   bScaleAuto.Visible:=False;
@@ -425,11 +439,15 @@ end;
 
 procedure TForm1.SpeedButton3Click(Sender: TObject);
 begin
-  ShowMessage(
-  'Camargo, M.G. 2022. Datractor: an open source software for extracting data directly from PDFs and images. v. 1.0. '+
-  'https://github.com/mauricio-camargo/datractor'#13#13+
-  'By Maurício Camargo. Version 1.0. June, 2022.');
-end;
+Form3.Label1.Caption :=
+  'Camargo, M.G. 2022. Datractor: an open source software for'+#13+
+  'extracting data directly from PDFs and images. v. 1.0.';
+Form3.Label2.Caption :=  'https://github.com/mauricio-camargo/datractor';
+Form3.Label3.Caption :=  'By Maurício Camargo. Version 1.0. June, 2022.';
+Form3.Label4.Caption :=  'Video tutorial: ';
+Form3.ATLabelLink1.Caption :=  'https://youtu.be/GI8dnzxbOVk';
+Form3.Show;
+end;           d
 
 procedure TForm1.SpeedButton4Click(Sender: TObject);
 begin
@@ -444,6 +462,19 @@ bPrev.Enabled := PDFCtrl.PageCount > 1;
 bNext.Enabled := PDFCtrl.PageCount > 1;
 BtnStart.Enabled:=True;
 ExtractBtn.Enabled:=True;
+
+EdX1.Value:=0;
+EdX2.Value:=0;
+EdY1.Value:=0;
+EdY2.Value:=0;
+SG.Clear;
+SG.RowCount:=1;
+SG.Cells[0,0]:='N';
+SG.Cells[1,0]:='Y_vert';
+SG.Cells[2,0]:='X_horiz';
+SG.Cells[3,0]:='Obs';
+sePageNo.Value:=1;
+CheckB1.Checked:=False;
 
 Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
 CheckB1.Visible:=False;
@@ -462,7 +493,8 @@ procedure TForm1.SpeedButton5Click(Sender: TObject);
 var i: integer;
 begin
 MemoTemp.Lines.Clear;
-for i:=0 to SG.RowCount-1 do
+MemoTemp.Lines.Add('Y;X;Obs');
+for i:=1 to SG.RowCount-1 do
  MemoTemp.Lines.Add(SG.Cells[0,i]+';'+SG.Cells[1,i]+';'+SG.Cells[2,i]+';'+SG.Cells[3,i]);
 MemoTemp.SelectAll;
 MemoTemp.CopyToClipboard;

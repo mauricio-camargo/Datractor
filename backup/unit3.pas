@@ -5,20 +5,22 @@ unit Unit3;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, StdCtrls,
-  SpinEx;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ATLinkLabel,
+  LCLIntf;
 
 type
 
   { TForm3 }
 
   TForm3 = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    EdVal: TFloatSpinEditEx;
+    ATLabelLink1: TATLabelLink;
+    Button1: TButton;
     Label1: TLabel;
-    procedure FormActivate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    procedure ATLabelLink1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
 
   public
@@ -34,15 +36,14 @@ implementation
 
 { TForm3 }
 
-procedure TForm3.FormActivate(Sender: TObject);
+procedure TForm3.Button1Click(Sender: TObject);
 begin
-  EdVal.SelectAll;
+  Close;
 end;
-
-procedure TForm3.FormShow(Sender: TObject);
+              r
+procedure TForm3.ATLabelLink1Click(Sender: TObject);
 begin
-  EdVal.SelectAll;
-
+  OpenURL(ATLabelLink1.Caption);
 end;
 
 end.
