@@ -1,10 +1,10 @@
-# Datractor
+# Datractor digitizer
  
 Download Datractor from here:
 
 https://github.com/mauricio-camargo/Datractor/raw/main/deploy/datractor.zip
 
-Small freeware program written in Lazarus for extracting graph and map data values directly from PDFs and images.
+Small freeware program written in Lazarus for extracting graph and map data points directly from PDFs and images.
 
 Pequeno programa aberto escrito em Lazarus para extrair valores de gráficos e mapas diretamente de PDFs e imagens.
 
