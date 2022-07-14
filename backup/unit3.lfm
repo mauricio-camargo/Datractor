@@ -26,14 +26,6 @@ object Form3: TForm3
     OnClick = Button1Click
     TabOrder = 0
   end
-  object Label2: TLabel
-    Left = 72
-    Height = 25
-    Top = 112
-    Width = 51
-    Caption = 'Label2'
-    ParentColor = False
-  end
   object Label3: TLabel
     Left = 152
     Height = 25
@@ -64,6 +56,30 @@ object Form3: TForm3
     Top = 280
     Width = 51
     Caption = 'Label4'
+    ParentColor = False
+  end
+  object ATLabelLink2: TATLabelLink
+    Cursor = crHandPoint
+    Left = 72
+    Height = 25
+    Top = 112
+    Width = 102
+    Caption = 'ATLabelLink2'
+    Font.Color = clBlue
+    ParentColor = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    OnClick = ATLabelLink1Click
+    ColorLinkNormal = clBlue
+    ColorLinkMouseover = clRed
+  end
+  object Label2: TLabel
+    Left = 72
+    Height = 25
+    Top = 8
+    Width = 62
+    Caption = 'Citação:'
     ParentColor = False
   end
 end

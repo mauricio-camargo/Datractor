@@ -14,12 +14,14 @@ type
 
   TForm3 = class(TForm)
     ATLabelLink1: TATLabelLink;
+    ATLabelLink2: TATLabelLink;
     Button1: TButton;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     procedure ATLabelLink1Click(Sender: TObject);
+    procedure ATLabelLink2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
 
@@ -44,6 +46,11 @@ end;
 procedure TForm3.ATLabelLink1Click(Sender: TObject);
 begin
   OpenURL(ATLabelLink1.Caption);
+end;
+
+procedure TForm3.ATLabelLink2Click(Sender: TObject);
+begin
+  OpenURL(ATLabelLink2.Caption);
 end;
 
 end.

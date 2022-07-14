@@ -14,6 +14,7 @@ type
 
   TForm3 = class(TForm)
     ATLabelLink1: TATLabelLink;
+    ATLabelLink2: TATLabelLink;
     Button1: TButton;
     Label1: TLabel;
     Label2: TLabel;
@@ -40,7 +41,7 @@ procedure TForm3.Button1Click(Sender: TObject);
 begin
   Close;
 end;
-              r
+
 procedure TForm3.ATLabelLink1Click(Sender: TObject);
 begin
   OpenURL(ATLabelLink1.Caption);

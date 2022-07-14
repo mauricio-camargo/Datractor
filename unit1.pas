@@ -441,11 +441,11 @@ procedure TForm1.SpeedButton3Click(Sender: TObject);
 begin
 Form3.Label1.Caption :=
   'Camargo, M.G. 2022. Datractor: an open source software for'+#13+
-  'extracting data directly from PDFs and images. v. 1.0.';
-Form3.Label2.Caption :=  'https://github.com/mauricio-camargo/datractor';
+  'extracting data points directly from PDFs and images. v. 1.0.';
 Form3.Label3.Caption :=  'By Maurício Camargo. Version 1.0. June, 2022.';
 Form3.Label4.Caption :=  'Video tutorial: ';
 Form3.ATLabelLink1.Caption :=  'https://youtu.be/GI8dnzxbOVk';
+Form3.ATLabelLink2.Caption :=  'https://github.com/mauricio-camargo/Datractor';
 Form3.Show;
 end;
 
