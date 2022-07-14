@@ -2,7 +2,7 @@
  
 Download Datractor from here:
 
-https://github.com/mauricio-camargo/Datractor/raw/main/deploy/datractor.zip
+https://github.com/mauricio-camargo/Datractor/raw/main/deploy/deploy.zip
 
 Small freeware program written in Lazarus FreePascal for extracting graph and map data points directly from PDFs and images.
 
