@@ -14,5 +14,5 @@ https://youtu.be/GI8dnzxbOVk
 
 Citation:
 
-Camargo, M.G. 2022. Datractor: an open source software for extracting graph and map data values directly from PDFs and images. v. 1.0.
+Camargo, M.G. 2022. Datractor: an open source software for extracting graph and map data points directly from PDFs and images. v. 1.0.
 https://github.com/mauricio-camargo/Datractor
