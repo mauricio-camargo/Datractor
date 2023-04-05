@@ -8,9 +8,9 @@ Datractor is a small freeware program written in Lazarus FreePascal for extracti
 
 Datractor é um pequeno programa aberto escrito em Lazarus FreePascal para extrair valores de gráficos e mapas diretamente de PDFs e imagens.
 
-Video tutorial de 47 segundos em: 
+Windows only.
 
-https://youtu.be/GI8dnzxbOVk
+Video tutorial (47 seg): https://youtu.be/GI8dnzxbOVk
 
 Citation:
 
