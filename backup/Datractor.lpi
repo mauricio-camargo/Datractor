@@ -25,6 +25,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="BGLControls"/>
+      </Item>
+      <Item>
         <PackageName Value="atflatcontrols_package"/>
       </Item>
       <Item>

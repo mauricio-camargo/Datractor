@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
   Spin, PdfiumCore, PdfiumCtrl, LCLIntf, Math, Unit2, Buttons, ValEdit, Grids,
-  ColorSpeedButton, BCButton, fpspreadsheetgrid, JvMovableBevel, SpinEx,
-  fpsallformats, StrUtils, Unit3;
+  ColorSpeedButton, BCButton, BGRABitmap, BGRABitmapTypes, BGRAGraphicControl,
+  fpspreadsheetgrid, SpinEx, fpsallformats, StrUtils, Unit3, BCTypes;
 
 type
 
@@ -16,6 +16,7 @@ type
 
   TForm1 = class(TForm)
     bGetText: TButton;
+    BGCont: TBGRAGraphicControl;
     BtnStart: TSpeedButton;
     CheckB1: TCheckBox;
     CoordXlab: TLabel;
@@ -26,8 +27,6 @@ type
     EdY2: TFloatSpinEditEx;
     ExtractBtn: TSpeedButton;
     grid: TsWorksheetGrid;
-    img: TImage;
-    JvMovablePanel1: TJvMovablePanel;
     Label1: TLabel;
     label10: TLabel;
     Label2: TLabel;
@@ -66,6 +65,9 @@ type
     bNext: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
+    procedure BGContMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+      );
+    procedure BGContRedraw(Sender: TObject; Bitmap: TBGRABitmap);
     procedure bGetTextClick(Sender: TObject);
     procedure bNextClick(Sender: TObject);
     procedure bPrevClick(Sender: TObject);
@@ -84,7 +86,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure imgMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure imgMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure sePageNoChange(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
@@ -93,9 +94,11 @@ type
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
   private
+    Zoom: ShortInt;
     procedure WebLinkClick(Sender: TObject; Url: string);
     procedure MouseMovePdf(Sender: TObject;Shift: TShiftState; X, Y: Integer);
   public
+    image: TBGRABitmap;
 
   end;
 
@@ -132,8 +135,7 @@ end;
 
 procedure TForm1.CheckB1Change(Sender: TObject);
 begin
-img.Stretch:=CheckB1.Checked;
-//img.Align:=alClient;
+BGCont.DiscardBitmap;
 end;
 
 procedure TForm1.bPrevClick(Sender: TObject);
@@ -145,10 +147,16 @@ end;
 
 procedure TForm1.bScaleAutoClick(Sender: TObject);
 begin
-if PDFCtrl.CurrentPage=nil then Exit;
-//PDFCtrl.ScaleMode := smZoom;
-PDFCtrl.ZoomPercentage:=100;
-Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
+if ScrollBox1.Visible then begin
+ if PDFCtrl.CurrentPage=nil then Exit;
+ //PDFCtrl.ScaleMode := smZoom;
+ PDFCtrl.ZoomPercentage:=100;
+ Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
+end else begin
+ Zoom:=100;
+ BGCont.DiscardBitmap;
+ Label9.Caption:='Zoom (100%)';
+end;
 end;
 
 procedure TForm1.bScaleM1Click(Sender: TObject);
@@ -158,22 +166,34 @@ end;
 
 procedure TForm1.bScaleMClick(Sender: TObject);
 begin
-if PDFCtrl.CurrentPage=nil then Exit;
-if PDFCtrl.ScaleMode <> smZoom then
-  PDFCtrl.ScaleMode := smZoom;
-if PDFCtrl.ZoomPercentage > 25 then
-  PDFCtrl.ZoomPercentage := PDFCtrl.ZoomPercentage - 5;
-Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
+if ScrollBox1.Visible then begin
+ if PDFCtrl.CurrentPage=nil then Exit;
+ if PDFCtrl.ScaleMode <> smZoom then
+   PDFCtrl.ScaleMode := smZoom;
+ if PDFCtrl.ZoomPercentage > 25 then
+   PDFCtrl.ZoomPercentage := PDFCtrl.ZoomPercentage - 5;
+ Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
+end else begin
+ Zoom:=Zoom-5;
+ BGCont.DiscardBitmap;
+ Label9.Caption:='Zoom ('+IntToStr(Zoom)+'%)';
+end;
 end;
 
 procedure TForm1.bScalePClick(Sender: TObject);
 begin
-if PDFCtrl.CurrentPage=nil then Exit;
-if PDFCtrl.ScaleMode <> smZoom then
-  PDFCtrl.ScaleMode := smZoom;
-if PDFCtrl.ZoomPercentage < 400 then
-  PDFCtrl.ZoomPercentage := PDFCtrl.ZoomPercentage + 5;
-Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
+if ScrollBox1.Visible then begin
+ if PDFCtrl.CurrentPage=nil then Exit;
+ if PDFCtrl.ScaleMode <> smZoom then
+   PDFCtrl.ScaleMode := smZoom;
+ if PDFCtrl.ZoomPercentage < 400 then
+   PDFCtrl.ZoomPercentage := PDFCtrl.ZoomPercentage + 5;
+ Label9.Caption:='Zoom ('+IntToStr(PDFCtrl.ZoomPercentage)+'%)';
+end else begin
+ Zoom:=Zoom+5;
+ BGCont.DiscardBitmap;
+ Label9.Caption:='Zoom ('+IntToStr(Zoom)+'%)';
+end;
 end;
 
 procedure TForm1.bNextClick(Sender: TObject);
@@ -199,6 +219,51 @@ if PDFCtrl.CurrentPage=nil then Exit;
   FreeAndNil(Form2);
 end;
 
+procedure TForm1.BGContRedraw(Sender: TObject; Bitmap: TBGRABitmap);
+var i,x,y,x_Orig,y_Orig: integer;
+imgT: TBGRABitmap;
+begin
+if Assigned(image) then begin
+ Bitmap.FillTransparent;
+ imgT:=image.Resample(trunc(image.Width*Zoom/100), trunc(image.Height*Zoom/100)) as TBGRABitmap;
+ Bitmap.PutImageAngle(0,0, imgT, 0, TResampleFilter.rfBestQuality, 0,0);
+ if CheckB1.Checked then begin
+  x:=0;
+  y:=0;
+  x_Orig:=imgT.Width;
+  y_Orig :=imgT.Height;
+  //Escreve diretamente no BGCont.Canvas ao inver do image.Canvas
+  BGCOnt.Bitmap.Canvas.Pen.Color:=clSilver;
+  BGCOnt.Bitmap.Canvas.Pen.Width:=1;
+  for i:=0 to x_Orig div 35 do begin
+   BGCont.Bitmap.Canvas.MoveTo(x,0);
+   BGCont.Bitmap.Canvas.LineTo(x,Y_Orig);
+   x:=x+35;
+  end;
+  for i:=0 to y_Orig div 35 do begin
+   BGCont.Bitmap.Canvas.MoveTo(0,y);
+   BGCont.Bitmap.Canvas.LineTo(X_Orig,y);
+   y:=y+35;
+  end;
+ end;
+imgT.Free;
+end;
+end;
+
+procedure TForm1.BGContMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+var Ry,Rx: Double;
+begin
+Rx:=X;
+Ry:=Y;
+if CalibrateOk then begin
+ Ry:=(by1)+(((Y-ay1)/(ay2-ay1))*(by2-by1));
+ Rx:=(bx1)+(((X-ax1)/(ax2-ax1))*(bx2-bx1));
+end;
+CoordXlab.Caption:=FloatToStrF(Rx,ffFixed,8,0);
+CoordYlab.Caption:=FloatToStrF(Ry,ffFixed,8,0);
+end;
+
 procedure TForm1.BtnStartClick(Sender: TObject);
 begin
 if BtnStart.Caption='Start calibrating' then begin
@@ -206,8 +271,10 @@ if BtnStart.Caption='Start calibrating' then begin
  MkX1lab.Caption:='Waiting...';
  ExtractBtn.Enabled:=True;
  BtnStart.Caption:='STOP calibrating';
-end else
+end else begin
  BtnStart.Caption:='Start calibrating';
+ Screen.Cursor:=crDefault;
+end;
 end;
 
 procedure TForm1.EdX1Click(Sender: TObject);
@@ -307,10 +374,10 @@ SG.Cells[1,0]:='Y_vert';
 SG.Cells[2,0]:='X_horiz';
 SG.Cells[3,0]:='Obs';
 //SpeedButton1.Caption := 'Open image' +#13#10 + 'jpg,png,tif etc';
+Zoom:=100;
 end;
 
-procedure TForm1.imgMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TForm1.imgMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X,Y: Integer);
 var Dax,Day,R: integer;
 Dbx,Dby,Rx,Ry: Double;
 S: String;
@@ -369,19 +436,6 @@ SG.AutoSizeColumn(1);
 SG.AutoSizeColumn(2);
 end;
 
-procedure TForm1.imgMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-var Ry,Rx: Double;
-begin
-Rx:=X;
-Ry:=Y;
-if CalibrateOk then begin
- Ry:=(by1)+(((Y-ay1)/(ay2-ay1))*(by2-by1));
- Rx:=(bx1)+(((X-ax1)/(ax2-ax1))*(bx2-bx1));
-end;
-CoordXlab.Caption:=FloatToStrF(Rx,ffFixed,8,2);
-CoordYlab.Caption:=FloatToStrF(Ry,ffFixed,8,2);
-end;
-
 procedure TForm1.sePageNoChange(Sender: TObject);
 begin
 if PDFCtrl.CurrentPage=nil then Exit;
@@ -394,9 +448,12 @@ end;
 procedure TForm1.SpeedButton1Click(Sender: TObject);
 begin
   if not OpenDialog1.Execute then Exit;
-  JvMovablePanel1.Visible:=True;
+  image.Free;
+  image := TBGRABitmap.Create(OpenDialog1.FileName);
+  BGCont.DiscardBitmap;
+
   ScrollBox1.Visible:=False;
-  img.Picture.LoadFromFile(OpenDialog1.FileName);
+  //img.Picture.LoadFromFile(OpenDialog1.FileName);
   CheckB1.Enabled:=True;
   BtnStart.Enabled:=True;
   ExtractBtn.Enabled:=True;
@@ -416,11 +473,11 @@ begin
   CheckB1.Checked:=False;
   Label9.Caption:='Zoom';
 
+  Label9.Visible:=True;
   CheckB1.Visible:=True;
-  bScaleM.Visible:=False;
-  bScaleAuto.Visible:=False;
-  bScaleP.Visible:=False;
-  Label9.Visible:=False;
+  bScaleM.Visible:=True;
+  bScaleAuto.Visible:=True;
+  bScaleP.Visible:=True;
   bPrev.Visible:=False;
   bNext.Visible:=False;
   Label8.Visible:=False;
@@ -440,9 +497,9 @@ end;
 procedure TForm1.SpeedButton3Click(Sender: TObject);
 begin
 Form3.Label1.Caption :=
-  'Camargo, M.G. 2022. Datractor: an open source software for'+#13+
-  'extracting data directly from PDFs and images. v. 1.0.';
-Form3.Label3.Caption :=  'By Maurício Camargo. Version 1.0. June, 2022.';
+  'Camargo, M.G. 2023. Datractor: an open source software for'+#13+
+  'extracting data points directly from PDFs and images. v. 1.1.';
+Form3.Label3.Caption :=  'By Maurício G. Camargo. Version 1.1. April, 2023.';
 Form3.Label4.Caption :=  'Video tutorial: ';
 Form3.ATLabelLink1.Caption :=  'https://youtu.be/GI8dnzxbOVk';
 Form3.ATLabelLink2.Caption :=  'https://github.com/mauricio-camargo/Datractor';
@@ -452,7 +509,6 @@ end;
 procedure TForm1.SpeedButton4Click(Sender: TObject);
 begin
 if not odPDF.Execute then exit;
-JvMovablePanel1.Visible:=False;
 ScrollBox1.Visible:=True;
 PDFCtrl.ScaleMode := smZoom;
 PDFCtrl.LoadFromFile(odPDF.FileName);
@@ -481,7 +537,6 @@ CheckB1.Visible:=False;
 bScaleM.Visible:=True;
 bScaleAuto.Visible:=True;
 bScaleP.Visible:=True;
-Label9.Visible:=True;
 bPrev.Visible:=True;
 bNext.Visible:=True;
 Label8.Visible:=True;

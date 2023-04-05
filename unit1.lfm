@@ -10,7 +10,7 @@ object Form1: TForm1
   DesignTimePPI = 144
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   WindowState = wsMaximized
   object Panel4: TPanel
     Left = 0
@@ -413,6 +413,19 @@ object Form1: TForm1
     ClientHeight = 1046
     ClientWidth = 1409
     TabOrder = 1
+    object BGCont: TBGRAGraphicControl
+      Left = 1
+      Height = 961
+      Top = 84
+      Width = 1407
+      Align = alClient
+      OnRedraw = BGContRedraw
+      Color = clWhite
+      ColorOpacity = 128
+      Alignment = taCenter
+      OnMouseDown = imgMouseDown
+      OnMouseMove = BGContMouseMove
+    end
     object Panel2: TPanel
       Left = 1
       Height = 83
@@ -466,11 +479,11 @@ object Form1: TForm1
         Visible = False
       end
       object CheckB1: TCheckBox
-        Left = 294
+        Left = 438
         Height = 34
-        Top = 28
-        Width = 297
-        Caption = 'Strech image '#13#10'(use mouse)'
+        Top = 36
+        Width = 184
+        Caption = 'Desenhar grade'
         Enabled = False
         Font.CharSet = ANSI_CHARSET
         Font.Height = -22
@@ -535,7 +548,7 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label9: TLabel
-        Left = 233
+        Left = 272
         Height = 28
         Top = -1
         Width = 52
@@ -621,34 +634,10 @@ object Form1: TForm1
         ParentFont = False
       end
     end
-    object JvMovablePanel1: TJvMovablePanel
-      Left = 0
-      Height = 599
-      Top = 102
-      Width = 874
-      BorderWidth = 1
-      BorderStyle = bsSingle
-      ClientHeight = 595
-      ClientWidth = 870
-      Color = clSilver
-      ParentColor = False
-      TabOrder = 1
-      BorderSize = 8
-      object img: TImage
-        Left = 2
-        Height = 591
-        Top = 2
-        Width = 866
-        Align = alClient
-        AutoSize = True
-        OnMouseDown = imgMouseDown
-        OnMouseMove = imgMouseMove
-      end
-    end
     object ScrollBox1: TScrollBox
-      Left = 176
+      Left = 72
       Height = 827
-      Top = 128
+      Top = 192
       Width = 1056
       HorzScrollBar.Page = 1
       VertScrollBar.Increment = 1
@@ -657,12 +646,12 @@ object Form1: TForm1
       BorderStyle = bsNone
       Color = clGray
       ParentColor = False
-      TabOrder = 2
+      TabOrder = 1
     end
     object grid: TsWorksheetGrid
-      Left = 24
+      Left = 128
       Height = 411
-      Top = 416
+      Top = 400
       Width = 872
       AutoCalc = True
       FrozenCols = 0
@@ -681,7 +670,7 @@ object Form1: TForm1
       MouseWheelOption = mwGrid
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goThumbTracking, goDblClickAutoSize]
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       Visible = False
     end
   end
